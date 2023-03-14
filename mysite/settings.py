@@ -11,18 +11,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+# import dotenv
 import os
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# dotenv.load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +33,8 @@ ALLOWED_HOSTS = [os.environ.get('DOMAINNAME'),
                  'localhost',
                  '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = [os.environ.get('HOSTNAME')]
+CSRF_TRUSTED_ORIGINS = ['https://jestenok.com:8443']
+
 CSRF_COOKIE_SECURE = False
 
 # Application definition
@@ -49,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -86,8 +89,8 @@ DATABASES = {
             'options': '-c search_path=django'
         },
         'NAME': 'server',
-        'USER': os.environ.get('LOGIN'),
-        'PASSWORD': os.environ.get('PASSWORD'),
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST'),
         'PORT': os.environ.get('DB_PORT'),
     }
@@ -128,9 +131,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+MEDIAFILES_DIRS = [
+    BASE_DIR / "media",
+]
+
+print(BASE_DIR / "static", '\n-------------------')
+
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'volumes/static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'volumes/media')
+STATIC_ROOT = os.path.join('/volumes/static')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join('/volumes/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
