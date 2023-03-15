@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from forms import SendMessageForm
+from mysite.forms import SendMessageForm
 
 
 def index(request):
