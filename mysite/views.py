@@ -11,7 +11,7 @@ def index(request):
 
 
 def health(request):
-    return HttpResponse('uwu')
+    return HttpResponse('uwuwuwuwu')
 
 
 def mail(request):
