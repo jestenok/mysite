@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .forms import SendMessageForm
+from django.http import HttpResponse
+from forms import SendMessageForm
 
 
 def index(request):
@@ -10,7 +11,7 @@ def index(request):
 
 
 def health(request):
-    return 'uwu'
+    return HttpResponse('uwu')
 
 
 def mail(request):
