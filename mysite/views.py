@@ -9,5 +9,9 @@ def index(request):
     return render(request, 'index.html', data)
 
 
+def health(request):
+    return 'uwu'
+
+
 def mail(request):
     return render(request, 'mailru-domainFq9vlubBVRksuY5D.html')
