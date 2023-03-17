@@ -17,5 +17,5 @@ jobs:
     - name: Build the Docker image
       run: |
         echo "${{ secrets.DOCKERPW }}" | docker login -u "jestenok" --password-stdin 
-        docker buildx build . --file Dockerfile --tag jestenok/mysite:latest --platform linux/arm64
+        docker buildx build . --file Dockerfile --tag jestenok/mysite:latest --platform linux/amd64
         docker push jestenok/mysite:latest
