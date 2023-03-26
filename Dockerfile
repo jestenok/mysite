@@ -1,9 +1,25 @@
-FROM python:3.10 as compiler
-MAINTAINER Jestenok
+FROM python:3.10-slim as builder
 
-COPY /app /code
-WORKDIR /code
+WORKDIR /app
 
-RUN python3 -m pip install -r requirements.txt
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc
+
+COPY requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.txt
+
+# Финальный этап
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/wheels /wheels
+COPY --from=builder /app/requirements.txt .
+COPY /app /app
+
+RUN pip install --no-cache /wheels/*
 
 ENTRYPOINT ["/bin/sh", "-x", "/code/entrypoint.sh"]
