@@ -18,8 +18,8 @@ WORKDIR /app
 
 COPY --from=builder /app/wheels /wheels
 COPY --from=builder /app/requirements.txt .
-COPY /app /app
 
 RUN pip install --no-cache /wheels/*
 
+COPY /app /app
 ENTRYPOINT ["/bin/sh", "-x", "/code/entrypoint.sh"]
