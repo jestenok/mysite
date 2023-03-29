@@ -2,19 +2,19 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   labels:
-    k8s-app: site
-  name: site
+    k8s-app: mysite
+  name: mysite
   namespace: {{ .Release.Namespace | quote }}
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      k8s-app: site
+      k8s-app: mysite
   template:
     metadata:
       labels:
-        k8s-app: site
+        k8s-app: mysite
     spec:
       volumes:
         - name: static
@@ -26,21 +26,16 @@ spec:
         - name: app
           hostPath:
             path: /code/volumes/mysite/app
-      initContainers:
-        - name: collectstatic
-          image: jestenok/mysite:1.0.50 # {"$imagepolicy": "flux-system:mysite"}
-          imagePullPolicy: Always
-          command: [ "/bin/sh", "-c", "python3 manage.py collectstatic --noinput --clear" ]
-          volumeMounts:
-            - mountPath: /volumes/static
-              name: static
       containers:
         - name: site
-          image: jestenok/mysite:latest
+          image: jestenok/mysite:1.0.50 # {"$imagepolicy": "flux-system:mysite"}
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
               protocol: TCP
+          volumeMounts:
+            - mountPath: /volumes/static
+              name: static
           env:
             - name: DOMAINNAME
               valueFrom:
