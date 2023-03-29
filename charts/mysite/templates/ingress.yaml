@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: {{ .Release.Namespace | quote }}
-  name: site
+  name: mysite
 spec:
   ingressClassName: nginx
   {{ if .Values.web.tls.enabled }}
@@ -19,7 +19,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: site
+              name: mysite
               port:
                 number: 8000
         - path: /static

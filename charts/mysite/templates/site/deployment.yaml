@@ -27,7 +27,7 @@ spec:
           hostPath:
             path: /code/volumes/mysite/app
       containers:
-        - name: site
+        - name: mysite
           image: jestenok/mysite:1.0.56 # {"$imagepolicy": "flux-system:mysite"}
           imagePullPolicy: IfNotPresent
           ports:
@@ -41,17 +41,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: domainname
-                  name: site
+                  name: mysite
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   key: db_host
-                  name: site
+                  name: mysite
             - name: DB_PORT
               valueFrom:
                 configMapKeyRef:
                   key: db_port
-                  name: site
+                  name: mysite
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:

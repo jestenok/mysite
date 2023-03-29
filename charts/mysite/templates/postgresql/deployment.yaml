@@ -29,7 +29,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: db_name
-                  name: site
+                  name: mysite
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:

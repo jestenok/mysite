@@ -2,12 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    k8s-app: site
-  name: site
+    k8s-app: mysite
+  name: mysite
   namespace: {{ .Release.Namespace | quote }}
 spec:
   ports:
     - port: 8000
       targetPort: 8000
   selector:
-    k8s-app: site
+    k8s-app: mysite
