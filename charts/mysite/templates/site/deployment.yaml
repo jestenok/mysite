@@ -28,7 +28,7 @@ spec:
             path: /code/volumes/mysite/app
       containers:
         - name: site
-          image: jestenok/mysite:1.0.53 # {"$imagepolicy": "flux-system:mysite"}
+          image: jestenok/mysite:1.0.56 # {"$imagepolicy": "flux-system:mysite"}
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
