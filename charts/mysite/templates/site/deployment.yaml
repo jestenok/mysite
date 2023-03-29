@@ -29,7 +29,7 @@ spec:
       containers:
         - name: site
           image: jestenok/mysite:1.0.53 # {"$imagepolicy": "flux-system:mysite"}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
               protocol: TCP
