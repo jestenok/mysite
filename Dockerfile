@@ -21,5 +21,7 @@ COPY --from=builder /app/requirements.txt .
 
 RUN pip install --no-cache /wheels/*
 
+COPY entrypoint.sh /app
 COPY /app /app
-ENTRYPOINT ["/bin/sh", "-x", "/code/entrypoint.sh"]
+
+ENTRYPOINT ["/bin/sh", "-x", "/app/entrypoint.sh"]
