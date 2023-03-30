@@ -11,7 +11,6 @@ pipeline {
         TAG = "${IMAGE}:${VERSION}.${BUILD_NUMBER}"
     }
     stages {
-        stages {
         stage('Git clone') {
             steps {
                 script {
