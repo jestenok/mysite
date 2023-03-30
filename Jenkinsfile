@@ -7,7 +7,7 @@ pipeline {
                 spec:
                     containers:
                     - name: docker
-                        image: docker:stable
+                        image: docker:latest
                         tty: true
                         command:
                         - cat
