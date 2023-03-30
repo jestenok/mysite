@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.web.host | quote }}
-      secretName: tls
+      secretName: kek-tls
   {{- end}}
   rules:
   - host: {{ .Values.web.host | quote }}
