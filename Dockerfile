@@ -2,8 +2,8 @@ FROM python:3.10-slim as builder
 
 WORKDIR /app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 0
+ENV PYTHONUNBUFFERED 0
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc
