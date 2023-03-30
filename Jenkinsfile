@@ -1,17 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            yaml '''
-                apiVersion: v1
-                kind: Pod
-                spec:
-                    containers:
-                    - name: docker
-                        image: docker:latest
-                        tty: true
-                        command:
-                        - cat
-                '''
+            label 'docker'
         }
     }
     environment {
