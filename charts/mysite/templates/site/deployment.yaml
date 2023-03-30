@@ -31,7 +31,7 @@ spec:
           image: registry.hub.docker.com/jestenok/mysite:1.0.61 # {"$imagepolicy": "flux-system:mysite"}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8000
+            - containerPort: 8080
               protocol: TCP
           volumeMounts:
             - mountPath: /volumes/static

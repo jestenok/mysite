@@ -8,6 +8,6 @@ python manage.py createsuperuser --noinput --username ${LOGIN} --email ${LOGIN}@
 
 python manage.py collectstatic --noinput
 
-gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
+gunicorn mysite.wsgi:application --bind 0.0.0.0:8080
 
 exec "$@"
