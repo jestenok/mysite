@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     container('docker') {
-                        git 'https://github.com/$IMAGE'
+                        git 'https://github.com/${IMAGE}'
                         sh 'docker build -t $TAG .'
                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                         sh 'docker push $TAG'
