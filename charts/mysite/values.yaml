@@ -13,8 +13,6 @@ web:
 
   tls:
     enabled: false
-    cert: ""
-    key: ""
 
 db:
   name: "site"
