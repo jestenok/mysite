@@ -29,6 +29,9 @@ spec:
               name: http
               protocol: TCP
           volumeMounts:
-            - mountPath: /usr/share/nginx/html
+            - mountPath: /usr/share/nginx/html/static
               name: mysite
-              subPath: html
+              subPath: html/static
+            - mountPath: /usr/share/nginx/html/image
+              name: mysite
+              subPath: html/image
