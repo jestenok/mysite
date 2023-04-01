@@ -16,10 +16,18 @@ spec:
       labels:
         k8s-app: postgres
     spec:
+      volumes:
+        - name: mysite
+          persistentVolumeClaim:
+            claimName: mysite
       containers:
         - name: postgres
           image: postgres:latest
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: mysite
+              subPath: pg
           ports:
             - containerPort: {{ .Values.db.port }}
               name: http

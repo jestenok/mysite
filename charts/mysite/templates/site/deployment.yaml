@@ -17,15 +17,9 @@ spec:
         k8s-app: mysite
     spec:
       volumes:
-        - name: static
-          hostPath:
-            path: /code/volumes/mysite/static
-        - name: media
-          hostPath:
-            path: /code/volumes/mysite/media
-        - name: app
-          hostPath:
-            path: /code/volumes/mysite/app
+        - name: mysite
+          persistentVolumeClaim:
+            claimName: mysite
       containers:
         - name: mysite
           image: {{.Values.web.image}}
@@ -35,7 +29,8 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /volumes/static
-              name: static
+              name: mysite
+              subPath: html/static
           env:
             - name: DOMAINNAME
               valueFrom:

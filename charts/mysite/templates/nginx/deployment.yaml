@@ -17,9 +17,9 @@ spec:
         k8s-app: nginx
     spec:
       volumes:
-        - name: nginx
-          hostPath:
-            path: /code/volumes/mysite
+        - name: mysite
+          persistentVolumeClaim:
+            claimName: mysite
       containers:
         - name: nginx
           image: nginx:latest
@@ -30,4 +30,5 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /usr/share/nginx/html
-              name: nginx
+              name: mysite
+              subPath: html
