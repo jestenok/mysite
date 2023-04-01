@@ -32,6 +32,6 @@ spec:
             - mountPath: /usr/share/nginx/html/static
               name: mysite
               subPath: html/static
-            - mountPath: /usr/share/nginx/html/image
+            - mountPath: /usr/share/nginx/html/media
               name: mysite
-              subPath: html/image
+              subPath: html/media
